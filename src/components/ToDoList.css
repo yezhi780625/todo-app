@@ -1,0 +1,15 @@
+.destroy{
+    -webkit-transition:-webkit-transform .25s, opacity .25s;
+    -moz-transition:-moz-transform .25s, opacity .25s;
+    transition: transform .25s, opacity .25s;
+    opacity:.25;
+}
+.destroy:hover{
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg);
+	opacity:1;
+}
+.completed{
+    text-decoration: line-through;
+}
