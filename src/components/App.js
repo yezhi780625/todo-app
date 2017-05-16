@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
-import ToDoList from './ToDoList';
+import ToDoList from '../containers/ToDoList';
 
 export default class App extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export default class App extends Component {
     }
 
     render = () => {
-        const {isOpen,toggleDrawer} = this.props;
+        const {app:{isOpen},toggleDrawer} = this.props;
         return (
             <div>
                 <MuiThemeProvider>
@@ -27,7 +27,8 @@ export default class App extends Component {
                         width={200}
                         open={isOpen}
                         onRequestChange={(open) => toggleDrawer(open)}>
-                        <AppBar />
+                        <AppBar 
+                            onLeftIconButtonTouchTap={()=>toggleDrawer(!isOpen)}/>
                     </Drawer>
                 </MuiThemeProvider>
             </div>

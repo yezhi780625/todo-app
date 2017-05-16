@@ -8,11 +8,13 @@ import { List, ListItem } from 'material-ui/List';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import HighlightOff from 'material-ui/svg-icons/action/highlight-off';
 import './ToDoList.css';
+
 const ToDoList = (props) => {
     let style = {
         marginRight: 20,
     };
-    const {new_item,onChangeInput,createTodo,todos} = this.props;
+    
+    const {todo:{new_item},onChangeInput,createTodo,todo:{items}} = props;
     return (
         <div style={{ padding: "20px" }}>
             <MuiThemeProvider>
@@ -28,7 +30,7 @@ const ToDoList = (props) => {
                 <FloatingActionButton
                     mini={true}
                     style={style}
-                    onTouchTap={props.createTodo}
+                    onTouchTap={createTodo}
                 >
                     <ContentAdd />
                 </FloatingActionButton>
@@ -38,14 +40,14 @@ const ToDoList = (props) => {
             <MuiThemeProvider>
                 <List>
                     {
-                        props.todos.map((todo, index) => {
-                             console.log(todo.completed);
+                        items.map((item, index) => {
+                             console.log(item.completed);
                             return (<ListItem
-                                key={"todo_" + todo.id}
-                                className={todo.completed ? "completed" : ""}
-                                leftCheckbox={<Checkbox value={todo.completed} onCheck={() => { props.toggleTodo(todo.id); }} />}
-                                primaryText={(<span id={"edit_" + index} className={todo.completed?"completed":""}>{todo.text}</span>)}
-                                rightIconButton={<IconButton onTouchTap={() => props.deleteTodo(todo.id)}><HighlightOff className="destroy" /></IconButton>}
+                                key={"todo_" + item.id}
+                                className={item.completed ? "completed" : ""}
+                                leftCheckbox={<Checkbox value={item.completed} onCheck={() => { props.toggleTodo(item.id); }} />}
+                                primaryText={(<span id={"edit_" + index} className={item.completed?"completed":""}>{item.text}</span>)}
+                                rightIconButton={<IconButton onTouchTap={() => props.deleteTodo(item.id)}><HighlightOff className="destroy" /></IconButton>}
                             />)
                         })}
                 </List>
