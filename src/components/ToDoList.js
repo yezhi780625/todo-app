@@ -8,21 +8,21 @@ import { List, ListItem } from 'material-ui/List';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import HighlightOff from 'material-ui/svg-icons/action/highlight-off';
 import './ToDoList.css';
-
+const style = {
+    marginRight: 20,
+};
 const ToDoList = (props) => {
-    let style = {
-        marginRight: 20,
-    };
-    
-    const {todo:{new_item},onChangeInput,createTodo,todo:{items}} = props;
+    const { todo: { new_item }, onChangeInput, toggleItem, deleteItem, createItem, todo: { items } } = props;
     return (
-        <div style={{ padding: "20px" }}>
+        <div className="todo">
+            <div className="todo-input">
             <MuiThemeProvider>
                 <TextField
+                    style={{marginRight:"10px"}}
                     hintText="What To Do?"
                     value={new_item}
                     onChange={onChangeInput}
-                    onKeyPress={(e)=>{if(e.which === 13) createTodo();}
+                    onKeyPress={(e) => { if (e.which === 13) createItem(); }
                     }
                 />
             </MuiThemeProvider>
@@ -30,30 +30,56 @@ const ToDoList = (props) => {
                 <FloatingActionButton
                     mini={true}
                     style={style}
-                    onTouchTap={createTodo}
+                    onTouchTap={createItem}
                 >
                     <ContentAdd />
                 </FloatingActionButton>
             </MuiThemeProvider>
-            <br />
-            <span>ToDo:</span>
-            <MuiThemeProvider>
-                <List>
-                    {
-                        items.map((item, index) => {
-                             console.log(item.completed);
-                            return (<ListItem
-                                key={"todo_" + item.id}
-                                className={item.completed ? "completed" : ""}
-                                leftCheckbox={<Checkbox value={item.completed} onCheck={() => { props.toggleTodo(item.id); }} />}
-                                primaryText={(<span id={"edit_" + index} className={item.completed?"completed":""}>{item.text}</span>)}
-                                rightIconButton={<IconButton onTouchTap={() => props.deleteTodo(item.id)}><HighlightOff className="destroy" /></IconButton>}
-                            />)
-                        })}
-                </List>
-            </MuiThemeProvider>
+            </div>
+            <div className="container">
+                <div className="todo-block">
+                    <p>ToDo:</p>
+                    <MuiThemeProvider>
+                        <div className="todo-list">
+                            <List >
+                                {
+                                    items.map((item, index) => {
+                                        return (!item.completed && (!item.archived) &&
+                                            <ListItem
+                                                key={"todo_" + item.id}
+                                                className={item.completed ? "completed" : ""}
+                                                leftCheckbox={<Checkbox value={item.completed} onCheck={() => { toggleItem(item.id); }} />}
+                                                primaryText={(<span id={"edit_" + index} className={item.completed ? "completed" : ""}>{item.text}</span>)}
+                                                rightIconButton={<IconButton onTouchTap={() => deleteItem(item.id)}><HighlightOff className="destroy" /></IconButton>}
+                                            />);
+                                    })}
+                            </List>
+                        </div>
+                    </MuiThemeProvider>
+                </div>
+                <div className="todo-block">
+                    <p>Done:</p>
+                    <MuiThemeProvider>
+                        <div className="todo-list">
+                            <List >
+                                {
+                                    items.map((item, index) => {
+                                        return (item.completed && (!item.archived) &&
+                                            <ListItem
+                                                key={"todo_" + item.id}
+                                                className={item.completed ? "completed" : ""}
+                                                leftCheckbox={<Checkbox value={item.completed} onCheck={() => { toggleItem(item.id); }} />}
+                                                primaryText={(<span id={"edit_" + index} className={item.completed ? "completed" : ""}>{item.text}</span>)}
+                                                rightIconButton={<IconButton onTouchTap={() => deleteItem(item.id)}><HighlightOff className="destroy" /></IconButton>}
+                                            />);
+                                    })}
+                            </List>
+                        </div>
+                    </MuiThemeProvider>
+                </div>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default ToDoList;

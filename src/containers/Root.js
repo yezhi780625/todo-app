@@ -11,5 +11,5 @@ const Root = (props) => {
             <App />
         </Provider>
     );
-}
+};
 export default Root;
