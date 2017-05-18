@@ -4,7 +4,7 @@ import App from '../components/App';
 
 const mapStateToProps = (state,ownProps)=>{
     return Object.assign({},state);
-}
+};
 
 const mapDispatchToProps = (dispatch,ownProps)=>{
     return {
@@ -13,6 +13,6 @@ const mapDispatchToProps = (dispatch,ownProps)=>{
             dispatch(AppActions.toggle_drawer(open));
         }
     };
-}
+};
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

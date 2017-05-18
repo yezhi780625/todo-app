@@ -5,11 +5,11 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import { List, ListItem } from 'material-ui/List';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import ActionToc from 'material-ui/svg-icons/action/toc';
 import ToDoList from '../containers/ToDoList';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import '../styles/App.css';
 
 export default class App extends Component {
     constructor(props) {
@@ -18,15 +18,18 @@ export default class App extends Component {
     }
 
     render = () => {
+        console.log(this.props);
         const { app: { isOpen }, toggleDrawer } = this.props;
         return (
-            <div style={{height:"100%",display:"flex",flexDirection:"column"}}>
+                <Router>
+            <div id="app">
                 <MuiThemeProvider>
                     <AppBar
                         title="ToDoList"
                         onLeftIconButtonTouchTap={() => toggleDrawer(!isOpen)} />
                 </MuiThemeProvider>
-                <ToDoList />
+                <Route exact path="/" render={() => (<div><h3>Home</h3></div>)}/>
+                <Route path="/todo" component={ToDoList}/>
                 <MuiThemeProvider>
                     <Drawer
                         docked={false}
@@ -37,15 +40,13 @@ export default class App extends Component {
                             onLeftIconButtonTouchTap={() => toggleDrawer(!isOpen)} />
                         <Divider />
                         <List>
-                            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
-                            <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-                            <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-                            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
-                            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
+                            <ListItem primaryText="Home" leftIcon={<ActionHome />} containerElement={<Link to="/"/>} />
+                            <ListItem primaryText="ToDoList" leftIcon={<ActionToc />} containerElement={<Link to="/todo"/>} />
                         </List>
                     </Drawer>
                 </MuiThemeProvider>
             </div>
+                </Router>
         )
     }
 }
