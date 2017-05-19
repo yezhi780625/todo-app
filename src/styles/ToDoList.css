@@ -40,7 +40,7 @@
 .completed{
     text-decoration: line-through;
 }
-@media screen and (max-width: 960px) {
+@media screen and (orientation: portrait) and (max-aspect-ratio:1/1) {
     .todo {
         text-align: right;
     }
