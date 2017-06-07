@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
@@ -8,7 +7,7 @@ import { List, ListItem } from 'material-ui/List';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionToc from 'material-ui/svg-icons/action/toc';
 import ToDoList from '../containers/ToDoList';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import '../styles/App.css';
 
 export default class App extends Component {
@@ -21,16 +20,13 @@ export default class App extends Component {
         console.log(this.props);
         const { app: { isOpen }, toggleDrawer } = this.props;
         return (
-                <Router>
-            <div id="app">
-                <MuiThemeProvider>
+            <Router>
+                <div id="app">
                     <AppBar
                         title="ToDoList"
                         onLeftIconButtonTouchTap={() => toggleDrawer(!isOpen)} />
-                </MuiThemeProvider>
-                <Route exact path="/" render={() => (<div><h3>Home</h3></div>)}/>
-                <Route path="/todo" component={ToDoList}/>
-                <MuiThemeProvider>
+                    <Route exact path="/" render={() => (<div><h3>Home</h3></div>)} />
+                    <Route path="/todo" component={ToDoList} />
                     <Drawer
                         docked={false}
                         width={200}
@@ -40,13 +36,12 @@ export default class App extends Component {
                             onLeftIconButtonTouchTap={() => toggleDrawer(!isOpen)} />
                         <Divider />
                         <List>
-                            <ListItem primaryText="Home" leftIcon={<ActionHome />} containerElement={<Link to="/"/>} />
-                            <ListItem primaryText="ToDoList" leftIcon={<ActionToc />} containerElement={<Link to="/todo"/>} />
+                            <ListItem primaryText="Home" leftIcon={<ActionHome />} containerElement={<Link to="/" />} />
+                            <ListItem primaryText="ToDoList" leftIcon={<ActionToc />} containerElement={<Link to="/todo" />} />
                         </List>
                     </Drawer>
-                </MuiThemeProvider>
-            </div>
-                </Router>
+                </div>
+            </Router>
         )
     }
 }

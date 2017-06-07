@@ -3,6 +3,7 @@
     flex:1;
     display: flex;
     flex-direction: column;
+    width:100%;
 }
 .todo-input{
     margin:20px;
@@ -23,7 +24,7 @@
     border-width: 2px;
     border-style:solid;
     flex:1;
-    min-width: 180px;
+    /*min-width: 180px;*/
 }
 .destroy{
     -webkit-transition:-webkit-transform .25s, opacity .25s;
@@ -43,11 +44,13 @@
 @media screen and (orientation: portrait) and (max-aspect-ratio:1/1) {
     .todo {
         text-align: right;
+        width:100%;
     }
     .container{
         display:flex;
         flex-direction: column;
         flex:1;
+        width:100%;
     }
     .todo-block{
         flex:1;
