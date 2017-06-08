@@ -6,7 +6,7 @@ import { List, ListItem } from 'material-ui/List';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionToc from 'material-ui/svg-icons/action/toc';
 import ToDoList from '../containers/ToDoList';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import '../styles/App.css';
 
 // export default class App extends Component {
