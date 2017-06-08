@@ -9,7 +9,6 @@ const mapStateToProps = (state,ownProps)=>{
 const mapDispatchToProps = (dispatch,ownProps)=>{
     return {
         toggleDrawer:(open)=>{
-            console.log(open);
             dispatch(AppActions.toggle_drawer(open));
         }
     };
