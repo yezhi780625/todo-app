@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
+// import { List, ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 
 export default class Profile extends Component {
@@ -21,22 +21,18 @@ export default class Profile extends Component {
                         size={50} />}
                 />
                 <CardText>
-                    <List>工作經驗:
+                    工作經驗:<ul>
                         {
-                            profile.experiences.map((item, index) => (<ListItem
-                                key={index}
-                                primaryText={item.title + " , " + item.company + " , " + item.department + " , " + item.start + " ~ " + item.end} />))
+                            profile.experiences.map((item, index) => (
+                                <li key={index}>{item.title + " , " + item.company + " , " + item.department + " , " + item.start + " ~ " + item.end} </li>))
                         }
-                    </List>
-                </CardText>
-                <CardText>
-                    <List>學歷:
+                    </ul>
+                    學歷:<ul>
                         {
-                            profile.educations.map((item, index) => (<ListItem
-                                key={index}
-                                primaryText={item.degree + " , " + item.school + " " + item.department + " , " + item.start + " ~ " + item.end} />))
+                            profile.educations.map((item, index) => (
+                                <li key={index}>{item.degree + " , " + item.school + " " + item.department + " , " + item.start + " ~ " + item.end} </li>))
                         }
-                    </List>
+                    </ul>
                 </CardText>
             </Card>);
     }
