@@ -1,6 +1,7 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import reducer from './reducers/index'
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import reducer from './reducers/index';
+import logger from 'redux-logger';
 
 
 export default function configureStore(preloadedState) {
@@ -8,7 +9,8 @@ export default function configureStore(preloadedState) {
     reducer,
     preloadedState,
     applyMiddleware(
-      thunkMiddleware
+      thunkMiddleware,
+      logger
     )
-  )
+  );
 }
