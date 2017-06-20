@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         deleteItem: (id) => {
             return dispatch(ToDoActions.delete_item(id));
+        },
+        updateItem:(items)=>{
+            return dispatch(ToDoActions.update_item(items));
         }
 
     };
